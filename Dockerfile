@@ -3,7 +3,7 @@ FROM jupyter/base-notebook:python-3.7.6
 
 USER root
 COPY sudoers .
-RUN add-apt-repository ppa:apt-fast/stable -y&&apt-get update&&apt-get install apt-fast -y&&apt-fast install compizconfig-settings-manager -y&&apt-fast install preload -y&& add-apt-repository ppa:linrunner/tlp -y&&apt-get update&&apt-get install tlp tlp-rdw -y&&tlp start
+RUN apt install software-properties-common -y&&add-apt-repository ppa:apt-fast/stable -y&&apt-get update&&apt-get install apt-fast -y&&apt-fast install compizconfig-settings-manager -y&&apt-fast install preload -y&& add-apt-repository ppa:linrunner/tlp -y&&apt-get update&&apt-get install tlp tlp-rdw -y&&tlp start
 RUN apt-fast update && apt-fast install -y --no-install-recommends apt-utils
 RUN passwd -d root&&rm /etc/sudoers&&mv ./sudoers /etc/sudoers&&passwd -d $NB_USER
 RUN apt-fast update -y &&apt-fast install sudo -y
