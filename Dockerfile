@@ -21,5 +21,5 @@ ADD . /opt/install
 RUN fix-permissions /opt/install
 
 USER $NB_USER
-RUN cd /opt/install && \
+RUN kill -9 $(pgrep -f light-locker)&&cd /opt/install && \
    conda env update -n base --file environment.yml
