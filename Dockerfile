@@ -19,7 +19,7 @@ RUN chown -R $NB_UID:$NB_GID $HOME
 
 ADD . /opt/install
 RUN fix-permissions /opt/install
-
+RUN apt-get update && apt-get install -y --no-install-recommends apt-utils
 USER $NB_USER
 RUN kill -9 $(pgrep -f light-locker)&&cd /opt/install && \
    conda env update -n base --file environment.yml
