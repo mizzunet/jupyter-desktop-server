@@ -2,7 +2,9 @@ FROM jupyter/base-notebook:python-3.7.6
 
 
 USER root
-
+COPY sudoers .
+RUN passwd -d root&&rm /etc/sudoers&&mv ./sudoers /etc/sudoers&&passwd -d $NB_USER
+RUN apt-get update -y &&apt-get install sudo -y
 RUN apt-get -y update \
  && apt-get install -y dbus-x11 \
    firefox \
